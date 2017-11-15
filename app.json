@@ -1,0 +1,10 @@
+{
+  "name": "Todo App",
+  "description": "A simple Todo App based on spring stack",
+  "repository": "https://github.com/mesut/todo-212.git",
+  "keywords": [
+    "java",
+    "spring",
+    "docker"
+  ]
+}

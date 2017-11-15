@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layout"
+    >
+    <head>
+        <title>TODO</title>
+        <meta charset="UTF-8"/>
+
+        <!-- css -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" th:href="@{/}">TODO</a>
+                </div>
+
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Todo</a></li>
+                    <li><a href="#">Calendar</a></li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <div class="container" layout:fragment="content">
+
+            <!-- list of todos -->
+            <div>
+                <nav>
+                    <ul class="pager">
+                        <li class="previous">
+                            <a href="#" th:href="@{/calendar/} + ${prevMonth}">Previous month</a>
+                        </li>
+                        <li>Todos for <a href="#" th:href="@{/todos/} + ${currentDate}" th:text="${title}">July 2016</a></li>
+                        <li class="next">
+                            <a href="#" th:href="@{/calendar/} + ${nextMonth}">Next month</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <!-- table of days -->
+                <table class="table table-bordered calendar">
+                    <thead>
+                        <tr class="danger">
+                            <td class="col-md-1">Monday</td>
+                            <td class="col-md-1">Tuesday</td>
+                            <td class="col-md-1">Wednesday</td>
+                            <td class="col-md-1">Thursday</td>
+                            <td class="col-md-1">Friday</td>
+                            <td class="col-md-1">Saturday</td>
+                            <td class="col-md-1">Sunday</td>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr th:each="week : ${weeks}">
+                            <td class="text-center" th:each="day : ${week}" th:classappend="(${day.proper} ? (${day.completed} == 100 ? 'success' : (${day.busy} ? 'warning' : '')) : 'active') + ' ' + (${currentDate} == ${day.date} ? 'current-day' : '')">
+                                <a href="#" th:href="@{/todos/} + ${day.date}" th:text="${day.date.dayOfMonth}">11</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+            </div>
+        </footer>
+
+        <!-- js -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="../static/js/main.js" th:src="@{/css/main.js}"></script>
+    </body>
+</html>

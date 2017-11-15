@@ -77,7 +77,6 @@ public class TodoControllerTest {
         verify(model).addAttribute("progress", 1);
         verify(model).addAttribute("nowDate", date);
         verify(model).addAttribute("nextDate", date.plusDays(1));
-        verify(model).addAttribute("nowMonth", date.toString("yyyy/MM"));
         verify(model).addAttribute(eq("newTodo"), anyObject());
     }
 
